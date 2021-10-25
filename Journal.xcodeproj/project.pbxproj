@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E6D8B262726CA8E00551D8A /* Journal Version 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Journal Version 2.xcdatamodel"; sourceTree = "<group>"; };
 		4EA59D752726A5AA00499854 /* Journal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EA59D782726A5AA00499854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EA59D7A2726A5AA00499854 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -633,6 +634,7 @@
 		4EA59D812726A5AA00499854 /* Journal.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				4E6D8B262726CA8E00551D8A /* Journal Version 2.xcdatamodel */,
 				4EA59D822726A5AA00499854 /* Journal.xcdatamodel */,
 			);
 			currentVersion = 4EA59D822726A5AA00499854 /* Journal.xcdatamodel */;

@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 class JournalViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    var myPredicate: NSPredicate?
 
     var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var journal = [Journal]()
@@ -19,6 +22,7 @@ class JournalViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Journals"
         tableView.dataSource = self
+        tableView.delegate = self
         do {
             let journal = try managedObjectContext.fetch(Journal.fetchRequest())
         } catch {
@@ -31,6 +35,7 @@ class JournalViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         fetchJournalEntries()
     }
     
@@ -47,6 +52,7 @@ class JournalViewController: UIViewController {
             let textField = alert.textFields![0]
             let newJournalEntry = Journal(context: self.managedObjectContext)
             newJournalEntry.title = textField.text!
+            newJournalEntry.topic = "Stuff I do everyday"
             newJournalEntry.createdAt = Date() as Date?
             self.saveJournalEntries()
         }
@@ -82,7 +88,7 @@ class JournalViewController: UIViewController {
     
 }
 
-extension JournalViewController: UITableViewDataSource {
+extension JournalViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
         let journalItem = journal[indexPath.row]
@@ -93,6 +99,34 @@ extension JournalViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return journal.count
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        managedObjectContext.delete(journal[indexPath.row])
+        self.saveJournalEntries()
+    }
+}
+
+
+extension JournalViewController {
+    
+    func getUsingPredicate() {
+
+        let fetchRequest:NSFetchRequest<Journal> = Journal.fetchRequest()
+
+        let date = Date()
+        
+        let firstPredicate = NSPredicate(format: "isCompleted == true")
+        let secondPredicate = NSPredicate(format: "createdAt < %@", date as CVarArg)
+
+        fetchRequest.predicate = NSCompoundPredicate(type: .and, subpredicates: [firstPredicate, secondPredicate])
+        
+        do {
+            try managedObjectContext.fetch(fetchRequest)
+            
+        } catch {
+            print("Error: \(error)")
+        }
     }
 }
 

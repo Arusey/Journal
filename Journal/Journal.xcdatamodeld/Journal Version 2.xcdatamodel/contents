@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Journal" representedClassName=".Journal" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="journalDescription" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="topic" optional="YES" attributeType="String"/>
@@ -10,6 +10,6 @@
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class"/>
     <elements>
         <element name="Journal" positionX="-63" positionY="-18" width="128" height="104"/>
-        <element name="User" positionX="-63" positionY="9" width="128" height="29"/>
+        <element name="User" positionX="-54" positionY="18" width="128" height="29"/>
     </elements>
 </model>
